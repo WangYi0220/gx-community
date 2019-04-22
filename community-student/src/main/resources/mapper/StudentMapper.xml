@@ -1,0 +1,58 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.StudentMapper">
+    <!--
+    mapper:student
+    author:lxl
+    -->
+
+    <!-- 查看与当前学生同班的学生信息列表 -->
+    <select id="queryStudentListByClassUUID" parameterType="String" resultType="Map">
+        SELECT s.stuUUID,
+                c.className,
+                s.stuName,
+                s.sex,
+                n.nationName,
+                s.telePhone,
+                s.familyAdd
+        FROM tb_student s inner join tb_class_info c
+        on s.classUUID = c.classUUID inner join tb_nation n
+        on s.nationID = n.nationID
+        WHERE s.classUUID = #{classUUID}
+    </select>
+
+    <!-- 根据学生编号查看对应的学生信息 -->
+    <select id="queryByStuUUID" parameterType="String" resultType="Map">
+        SELECT s.stuUUID,
+                c.className,
+                s.stuName,
+                s.sex,
+                s.stuNO,
+                n.nationName,
+                s.telePhone,
+                s.familyAdd
+        FROM tb_student s
+        inner join tb_class_info c
+        on s.classUUID = c.classUUID
+        inner join tb_nation n
+        on s.nationID = n.nationID
+        WHERE s.stuUUID = #{stuUUID}
+    </select>
+
+    <!-- 根据班级编号查询对应的班级信息 -->
+    <select id="login" parameterType="com.gx.community.pojo.Student" resultType="Map">
+        select stuUUID,
+                stuHeadImg,
+                stuNO,
+                stuName,
+                telePhone
+        from tb_student
+        where stuNo = #{stuNO}
+        and password = #{password}
+    </select>
+
+    <update id="upHeadImg">
+        update tb_student
+        set stuHeadImg = #{path}
+        where stuUUID = #{stuUUID}
+    </update>
+</mapper>

@@ -1,0 +1,57 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.PostJobTabMapper">
+    <!--
+    mapper:PostJobTabMapper
+    author:xyy
+    -->
+    <select id="queryJobPost" resultType="map">
+        select
+        jobUUID,
+        orgName,
+        salary,
+        industryID,
+        postName
+        from tb_job_post
+    </select>
+
+    <select id="queryJobPostByJobUUID" parameterType="String" resultType="JobPost">
+        select
+            t.jobUUID,
+            t.parUUID,
+            t.postName,
+            t.orgName,
+            t.orgAddress,
+            t.orgRemark,
+            t.job,
+            t.jobRequest,
+            t.jobRemark,
+            t.salary,
+            t.phone,
+            t.linkman,
+            t.createTime,
+            i.industry
+        from tb_job_post t
+        inner join tb_industry i on t.industryID = i.industryID
+        where jobUUID = #{jobUUID}
+    </select>
+
+    <select id="queryJobPostByIndustryID" parameterType="int" resultType="map">
+        select
+        jobUUID,
+        orgName,
+        salary,
+        industryID,
+        postName
+        from tb_job_post where industryID =#{industryID}
+    </select>
+
+    <select id="queryJobPostLikePostName" parameterType="String" resultType="map">
+        select
+        jobUUID,
+        orgName,
+        salary,
+        industryID,
+        postName
+        from tb_job_post where postName like concat('%',#{postName},'%')
+    </select>
+</mapper>

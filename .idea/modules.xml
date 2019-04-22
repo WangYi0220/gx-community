@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/community.iml" filepath="$PROJECT_DIR$/community.iml" />
+      <module fileurl="file://$PROJECT_DIR$/community-admin8006/community-admin8006.iml" filepath="$PROJECT_DIR$/community-admin8006/community-admin8006.iml" />
+      <module fileurl="file://$PROJECT_DIR$/community-consumer/community-consumer.iml" filepath="$PROJECT_DIR$/community-consumer/community-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/community-patriarch8005/community-patriarch8005.iml" filepath="$PROJECT_DIR$/community-patriarch8005/community-patriarch8005.iml" />
+      <module fileurl="file://$PROJECT_DIR$/community-student/community-student.iml" filepath="$PROJECT_DIR$/community-student/community-student.iml" />
+      <module fileurl="file://$PROJECT_DIR$/community-student8002/community-student8002.iml" filepath="$PROJECT_DIR$/community-student8002/community-student8002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/community-student8004/community-student8004.iml" filepath="$PROJECT_DIR$/community-student8004/community-student8004.iml" />
+      <module fileurl="file://$PROJECT_DIR$/community-teacher8003/community-teacher8003.iml" filepath="$PROJECT_DIR$/community-teacher8003/community-teacher8003.iml" />
+      <module fileurl="file://$PROJECT_DIR$/community-zuul80/community-zuul80.iml" filepath="$PROJECT_DIR$/community-zuul80/community-zuul80.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka7001/eureka7001.iml" filepath="$PROJECT_DIR$/eureka7001/eureka7001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka7002/eureka7002.iml" filepath="$PROJECT_DIR$/eureka7002/eureka7002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka7003/eureka7003.iml" filepath="$PROJECT_DIR$/eureka7003/eureka7003.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pojo/pojo.iml" filepath="$PROJECT_DIR$/pojo/pojo.iml" />
+    </modules>
+  </component>
+</project>

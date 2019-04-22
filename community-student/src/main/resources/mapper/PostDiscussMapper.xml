@@ -1,0 +1,29 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.PostDiscussMapper">
+    <select id="postDiscussByPostUUID" resultType="Map" parameterType="String">
+        select
+          post.discussUUID,
+          post.stuA,
+          stuA.stuName stuNameA,
+          post.stuB,
+          stuB.stuName stuNameB,
+          post.discussContent,
+          post.createTime
+        from (select discussUUID, postUUID, stuA, stuB, discussContent, createTime from tb_post_discuss where postUUID = #{postUUID}) post
+        inner join tb_student stuA
+        on post.stuA = stuA.stuUUID
+        inner join tb_student stuB
+        on post.stuB = stuB.stuUUID
+        order by post.createTime asc
+    </select>
+
+    <insert id="insertPostDiscuss" parameterType="com.gx.community.pojo.PostDiscuss">
+        INSERT INTO tb_post_discuss (discussUUID, postUUID, stuA, stuB, discussContent, createTime)
+        VALUES(#{discussUUID}, #{postUUID}, #{stuA}, #{stuB}, #{discussContent}, NOW());
+    </insert>
+
+    <delete id="delPostDiscuss" parameterType="String">
+        delete from tb_post_discuss
+        where discussUUID = #{discussUUID}
+    </delete>
+</mapper>

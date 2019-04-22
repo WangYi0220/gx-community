@@ -1,0 +1,15 @@
+com\gx\community\CommunityConsumer.class
+com\gx\community\service\StudentClientService.class
+com\gx\community\service\AdminClientService.class
+com\gx\community\controller\AdminClientController.class
+com\gx\community\service\TeacherClientFallbackFactory.class
+com\gx\community\controller\StudentClientController.class
+com\gx\community\controller\PatriarchClientController.class
+com\gx\community\service\TeacherClientFallbackFactory$1.class
+com\gx\community\service\PatriarchClientService.class
+com\gx\community\service\StudentClientFallbackFactory$1.class
+com\gx\community\controller\TeacherClientController.class
+com\gx\community\service\PatriarchClientFallbackFactory.class
+com\gx\community\service\PatriarchClientFallbackFactory$1.class
+com\gx\community\service\StudentClientFallbackFactory.class
+com\gx\community\service\TeacherClientService.class

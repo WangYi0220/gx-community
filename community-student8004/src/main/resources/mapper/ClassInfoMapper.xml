@@ -1,0 +1,20 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.ClassInfoMapper">
+    <!--
+    mapper:classInfo
+    author:lxl
+    -->
+
+    <!-- 根据班级编号查询对应的班级信息 -->
+    <select id="queryByClassUUID" parameterType="String" resultType="com.gx.community.pojo.ClassInfo">
+        select classUUID,
+                colID,
+                grade,
+                className,
+                teaUUID
+        from tb_class_info
+        where classUUID = #{classUUID}
+    </select>
+
+
+</mapper>

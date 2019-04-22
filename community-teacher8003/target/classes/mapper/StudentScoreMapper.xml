@@ -1,0 +1,15 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.StudentScoreMapper">
+    <!--
+        mapper:studentScore
+        author:lxl
+    -->
+
+    <!-- 根据班级编号查询学生成绩基本信息 -->
+    <select id="getStudentScoreBaseInfoByClassUUID" parameterType="String" resultType="Student">
+        SELECT stuUUID,
+                stuName
+        from tb_student
+        where classUUID = #{classUUID}
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.GraduateJobMapper">
+
+    <!--
+        xyy
+    -->
+
+    <select id="queryGraduateLikeStuName" parameterType="String" resultType="Map">
+        SELECT stuUUID,stuName FROM `tb_student`
+        WHERE stuName LIKE CONCAT(CONCAT('%',#{stuName}),'%')
+    </select>
+
+    <select id="queryGraduateJobByStuUUID" parameterType="String" resultType="Map">
+       SELECT b.* ,
+            t.stuHeadImg ,
+            t.stuName ,
+            t.sex ,
+            t.telephone ,
+           (SELECT className FROM tb_class_info WHERE classUUID = t.classUUID) className
+        FROM tb_graduate_job b
+        INNER JOIN tb_student t ON b.stuUUID = t.stuUUID
+        WHERE b.stuUUID = #{stuUUID}
+    </select>
+
+
+    <insert id="insertGraduateJob" parameterType="com.gx.community.pojo.GraduateJob">
+        INSERT INTO tb_graduate_job VALUES(
+        #{graUUID},#{stuUUID},#{graStartTime},#{graEndTime},#{graCompany},#{graPost},#{pay},#{graAddress}
+        )
+    </insert>
+
+</mapper>

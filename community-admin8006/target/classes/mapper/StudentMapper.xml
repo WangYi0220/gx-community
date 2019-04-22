@@ -1,0 +1,68 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.StudentMapper">
+    <!--
+        mapper:student
+        author:lxl
+    -->
+
+    <!-- 根据班级编号查询该班级的学生信息 -->
+    <select id="getStudentBaseInfoByClassUUID" parameterType="String" resultType="Map">
+        select student.stuUUID, student.stuName, class.className
+        from tb_student student
+        inner join (select classUUID, className from tb_class_info where classUUID = #{classUUID}) class
+        where student.classUUID = class.classUUID
+    </select>
+
+    <select id="getStudentInfoByClassUUID" parameterType="String" resultType="Map">
+        select student.stuUUID,
+                student.stuName,
+                class.className,
+                student.telephone,
+                student.idCard,
+                student.polStatus,
+                student.familyAdd
+        from tb_student student
+        inner join (select classUUID, className from tb_class_info where classUUID = #{classUUID}) class
+        where student.classUUID = class.classUUID
+    </select>
+
+    <!-- 根据学生编号查询对应的学生信息 -->
+    <select id="queryByStuUUID" parameterType="String" resultType="Map">
+        select student.stuUUID,
+                student.stuName,
+                class.className,
+                student.telephone,
+                student.idCard,
+                student.polStatus,
+                student.familyAdd
+        from tb_student student
+        inner join tb_class_info class
+        where student.classUUID = class.classUUID
+        and student.stuUUID = #{stuUUID}
+    </select>
+
+    <!-- 添加学生信息 -->
+    <insert id="addStudent" parameterType="Student">
+        insert into tb_student(stuUUID, password, stuNO, classUUID, stuName, sex, nationID,
+        accountLoc, telephone, idCard, polStatus, accountType, familyAdd, graSchool, eduLevel)
+        values(#{stuUUID},#{stuNO},#{stuNO},#{classUUID},#{stuName},
+             #{sex},#{nationID},#{accountLoc},#{telephone},#{idCard},
+             #{polStatus},#{accountType},#{familyAdd},#{graSchool},#{eduLevel})
+    </insert>
+
+    <!-- 删除学生信息 -->
+    <delete id="delStudent" parameterType="String">
+        delete from tb_student where stuUUID = #{stuUUID}
+    </delete>
+
+    <!-- 修改学生信息 -->
+    <update id="updateStudent" parameterType="Student">
+        update tb_student set classUUID = #{classUUID},
+                                stuName = #{stuName},
+                                telephone = #{telephone},
+                                idCard = #{idCard},
+                                polStatus = #{polStatus},
+                                familyAdd = #{familyAdd}
+        where stuUUID = #{stuUUID}
+    </update>
+</mapper>

@@ -1,0 +1,23 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.ParentMapper">
+    <!--
+    mapper:parent
+    author:lxl
+    -->
+
+    <!-- 家长登录 -->
+    <select id="login" parameterType="Parent" resultType="Map">
+        select parUUID,
+                parName,
+                telephone
+        from tb_parent
+        where telephone = #{telephone}
+        and password = #{password}
+    </select>
+
+    <!-- 修改默认密码 -->
+    <update id="updateDefaultPassword" parameterType="Parent">
+        update tb_parent set password = #{password}
+        where telephone = #{telephone}
+    </update>
+</mapper>

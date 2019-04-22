@@ -1,0 +1,19 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.StudentScoreMapper">
+    <!--
+    mapper:studentScore
+    author:lxl
+    -->
+
+    <!-- 查询自己小孩的成绩信息 -->
+    <select id="queryStudentScoreByStuUUID" parameterType="String" resultType="Map">
+        select student.stuName,
+                studentScore.semester,
+                studentScore.subject,
+                studentScore.score
+        from tb_student_score studentScore
+        inner join (select stuUUID,stuName from tb_student where stuUUID = #{stuUUID}) student
+        on student.stuUUID = studentScore.stuUUID
+    </select>
+
+</mapper>

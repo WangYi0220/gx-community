@@ -1,0 +1,15 @@
+com\gx\community\pojo\ClassSchedule.class
+com\gx\community\pojo\College.class
+com\gx\community\pojo\Parent.class
+com\gx\community\pojo\StudentScore.class
+com\gx\community\pojo\Student.class
+com\gx\community\pojo\GraduateJob.class
+com\gx\community\pojo\Industry.class
+com\gx\community\pojo\Post.class
+com\gx\community\pojo\JobPost.class
+com\gx\community\pojo\Nation.class
+com\gx\community\pojo\PostTab.class
+com\gx\community\pojo\Teacher.class
+com\gx\community\pojo\ClassInfo.class
+com\gx\community\pojo\PostDiscuss.class
+com\gx\community\pojo\Admin.class

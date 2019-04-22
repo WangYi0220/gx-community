@@ -1,0 +1,19 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.AdminMapper">
+    <select id="login" parameterType="Admin" resultType="Admin">
+        select adminUUID, account, name, phone
+        from tb_admin
+        where account = #{account}
+        and passwords = #{passwords}
+    </select>
+
+    <insert id="addAdmin" parameterType="Admin">
+        insert into tb_admin (account, passwords, name, phone)
+        values (#{account}, #{passwords}, #{name}, #{phone})
+    </insert>
+
+    <delete id="delAdmin" parameterType="int">
+        delete from tb_admin
+        where adminUUID = #{adminUUID}
+    </delete>
+</mapper>

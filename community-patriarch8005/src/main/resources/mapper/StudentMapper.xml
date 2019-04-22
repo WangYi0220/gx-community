@@ -1,0 +1,25 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.StudentMapper">
+    <!--
+    mapper:student
+    author:lxl
+    -->
+
+    <!-- 查看自己小孩的在校信息列表 -->
+    <select id="queryStudentListByParUUID" parameterType="String" resultType="Map">
+        select student.stuNO,
+                student.stuName,
+                student.stuUUID,
+                college.colName,
+                class.className
+        from tb_student student
+        inner join tb_class_info class
+        on student.classUUID = class.classUUID
+        inner join tb_college college
+        on  class.colID = college.colID
+        inner join tb_parent_student parent
+        on student.stuUUID = parent.stuUUID
+        where parent.parUUID = #{parUUID}
+    </select>
+
+</mapper>

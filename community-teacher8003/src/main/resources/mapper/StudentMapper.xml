@@ -1,0 +1,46 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.StudentMapper">
+    <!--
+        mapper:student
+        author:lxl
+    -->
+
+    <!-- 根据班级编号查看对应班级所有学生信息列表 -->
+    <select id="queryStudentListByClassUUID" parameterType="String" resultType="Map">
+        select stuUUID,
+                stuNO,
+                stuName,
+                sex,
+                telephone
+        from tb_student
+        where classUUID = #{classUUID}
+    </select>
+
+    <!-- 根据学生编号查看对应学生的详细信息 -->
+    <select id="queryByStuUUID" parameterType="String" resultType="Map">
+        select student.stuNO,
+                student.stuName,
+                student.sex,
+                student.telephone,
+                class.className,
+                nation.nationName,
+                student.idCard,
+                student.polStatus,
+                student.accountLoc,
+                student.accountType,
+                student.familyAdd,
+                student.graSchool,
+                student.eduLevel
+        from tb_student student
+        inner join tb_class_info class
+        on student.classUUID = class.classUUID
+        inner join tb_nation nation
+        on student.nationID = nation.nationID
+        where student.stuUUID = #{stuUUID}
+    </select>
+
+    <insert id="addStudent" parameterType="Student">
+        insert into tb_student (stuUUID, password, stuNO, classUUID, stuName, sex, nationID, accountLoc, telephone, idCard, polStatus, accountType, familyAdd, graSchool, eduLevel)
+        values (#{stuUUID}, #{password}, #{stuNO}, #{classUUID}, #{stuName}, #{sex}, #{nationID}, #{accountLoc}, #{telephone}, #{idCard}, #{polStatus}, #{accountType}, #{familyAdd}, #{graSchool}, #{eduLevel})
+    </insert>
+</mapper>

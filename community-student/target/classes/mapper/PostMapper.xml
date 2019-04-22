@@ -1,0 +1,52 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.PostMapper">
+
+    <select id="getPostList" resultType="Map">
+        select
+        post.postUUID,
+        post.createTime,
+        post.postTitle,
+        post.postContent,
+        student.stuUUID,
+        student.stuName,
+        student.stuHeadImg
+        from (select postUUID, stuUUID, createTime, postTitle, postContent from tb_post) post
+        inner join tb_student student
+        on post.stuUUID = student.stuUUID
+        order by post.createTime desc
+    </select>
+
+    <select id="queryPostByTabName" resultType="Map" parameterType="int">
+        select
+        post.postUUID,
+        post.createTime,
+        post.postTitle,
+        post.postContent,
+        student.stuUUID,
+        student.stuName,
+        student.stuHeadImg
+        from (select postUUID, stuUUID, createTime, postTitle, postContent from tb_post where postTab = #{tabID}) post
+        inner join tb_student student
+        on post.stuUUID = student.stuUUID
+        order by post.createTime desc
+    </select>
+
+    <insert id="insertPost" parameterType="com.gx.community.pojo.Post">
+        INSERT INTO tb_post (postUUID, postTab, stuUUID, createTime, postTitle, postContent)
+        VALUES(#{postUUID}, #{postTab}, #{stuUUID},  NOW(), #{postTitle}, #{postContent});
+    </insert>
+
+    <select id="getPostByPostUUID" parameterType="String" resultType="Map">
+        select
+        post.postUUID,
+        post.createTime,
+        post.postTitle,
+        post.postContent,
+        student.stuUUID,
+        student.stuName,
+        student.stuHeadImg
+        from (select postUUID, stuUUID, createTime, postTitle, postContent from tb_post where postUUID = #{postUUID}) post
+        inner join tb_student student
+        on post.stuUUID = student.stuUUID
+    </select>
+</mapper>

@@ -1,0 +1,61 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.ParentMapper">
+    <!--
+        mapper:parent
+        author:lxl
+    -->
+
+    <!-- 查看家长信息列表 -->
+    <select id="queryParentList" resultType="Parent">
+        SELECT parUUID,
+                parName,
+                telephone,
+                employer
+        FROM tb_parent
+    </select>
+
+    <!-- 根据家长编号查看对应的家长信息 -->
+    <select id="queryByParUUID" parameterType="String" resultType="Parent">
+        SELECT parUUID,
+                parName,
+                telephone,
+                employer
+        FROM tb_parent
+        where parUUID = #{parUUID}
+    </select>
+
+    <!-- 导入家长信息 -->
+    <insert id="importParentInfo" parameterType="List">
+        insert into tb_parent(parUUID, password, parName, telephone, employer)
+        values
+        <foreach collection="parents" item="parent" separator=",">
+            (#{parent.parUUID}, #{parent.telephone}, #{parent.parName}, #{parent.telephone}, #{parent.employer})
+        </foreach>;
+
+        insert into tb_parent_student(stuUUID,parUUID,relation)
+        values
+        <foreach collection="params" item="param" separator=",">
+            <!--
+            遍历map中值的集合:
+            param.values
+            item="value" 是每次获得的值
+             -->
+            <foreach collection="param.values" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </foreach>;
+    </insert>
+
+    <!-- 删除家长信息 -->
+    <delete id="delParent" parameterType="String">
+        delete from tb_parent where parUUID = #{parUUID}
+    </delete>
+
+    <!-- 修改家长信息 -->
+    <update id="updateParent" parameterType="Parent">
+        update tb_parent set parName = #{parName},
+                               telephone = #{telephone},
+                               employer = #{employer}
+        where parUUID = #{parUUID}
+    </update>
+</mapper>

@@ -1,0 +1,28 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.community.mapper.ParentPostMapper">
+    <!--
+    mapper:ParentPostMapper
+    author:xyy
+    -->
+    <select id="queryJobPostByParUUID" resultType="map" parameterType="String">
+         select
+          t.jobUUID,
+          t.orgName,
+          t.salary,
+          t.industryID,
+          t.postName,
+          i.industry
+        from tb_job_post t
+        inner join tb_industry i on t.industryID = i.industryID
+        where parUUID = #{parUUID}
+    </select>
+
+    <delete id="deleteJobPostByJobUUID" parameterType="String">
+      delete from tb_job_post where jobUUID = #{jobUUID}
+    </delete>
+
+    <insert id="addPost" parameterType="JobPost">
+        insert into tb_job_post (jobUUID, industryID, parUUID, postName, orgName, orgAddress, orgRemark, job, jobRequest, jobRemark, salary, phone, linkman, createTime)
+        values (#{jobUUID}, #{industryID}, #{parUUID}, #{postName}, #{orgName}, #{orgAddress}, #{orgRemark}, #{job}, #{jobRequest}, #{jobRemark}, #{salary}, #{phone}, #{linkman}, NOW())
+    </insert>
+</mapper>
